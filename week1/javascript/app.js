@@ -15,9 +15,11 @@ renderPage(productData);
 
 // 通過驗證後才新增列表
 function validateSubmit() {
-  if (productTitle.value == '') {
+  if ((productTitle.value).trim() == '') {
+    resetInput();
     alert('表單填寫有誤！欄位不能留空');
   } else if (productOriginPrice.value <= 0 || productPrice.value <= 0) {
+    resetInput();
     alert('表單填寫有誤！數值需要大於零');
   } else {
     addProduct();
@@ -99,6 +101,6 @@ function renderPage(data) {
 
 function resetInput() {
   title.value = '';
-  productOriginPrice.value = '';
-  productPrice.value = '';
+  price.value = '';
+  origin_price.value = '';
 }
