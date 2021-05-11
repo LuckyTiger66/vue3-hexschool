@@ -12,7 +12,7 @@ let productData = [];
 function validateSubmit() {
   if (productTitle.value == '') {
     alert('表單填寫有誤！欄位不能留空');
-  } else if (productOriginPrice.value < 0 || productPrice.value < 0) {
+  } else if (productOriginPrice.value <= 0 || productPrice.value <= 0) {
     alert('表單填寫有誤！數值需要大於零');
   } else {
     addProduct();
