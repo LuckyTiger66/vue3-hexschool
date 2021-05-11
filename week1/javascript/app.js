@@ -1,4 +1,4 @@
-const productInput = document.getElementById('title');
+const productTitle = document.getElementById('title');
 const productOriginPrice = document.getElementById('origin_price');
 const productPrice = document.getElementById('price');
 const addBtn = document.getElementById('addProduct');
@@ -6,26 +6,32 @@ const productList = document.getElementById('productList');
 const clearAllBtn = document.getElementById('clearAll');
 const countProduct = document.getElementById('productCount');
 
-let productData = []
+let productData = [];
 
-function addProduct() {
-  if (productInput.value !== '') {
-    productData.push({
-      id: Math.floor(Date.now()),
-      title: productInput.value.trim(),
-      origin_price: parseInt(productOriginPrice.value) || 0,
-      price: parseInt(productPrice.value) || 0,
-      is_enabled: false,
-    })
-
-    renderPage(productData);
-    productInput.value = '';
-    productOriginPrice.value = '';
-    productPrice.value = '';
+// 通過驗證後才新增列表
+function validateSubmit() {
+  if (productTitle.value == '') {
+    alert('表單填寫有誤！欄位不能留空');
+  } else if (productOriginPrice.value < 0 || productPrice.value < 0) {
+    alert('表單填寫有誤！數值需要大於零');
+  } else {
+    addProduct();
+    resetInput();
   }
 }
 
-addBtn.addEventListener('click', addProduct);
+function addProduct() {
+  productData.push({
+    id: Math.floor(Date.now()),
+    title: productTitle.value.trim(),
+    origin_price: Number(productOriginPrice.value),
+    price: Number(productPrice.value),
+    is_enabled: false,
+  });
+  renderPage(productData);
+}
+
+addBtn.addEventListener('click', validateSubmit);
 
 function removeProduct(id) {
   let newIndex = 0;
@@ -38,7 +44,7 @@ function removeProduct(id) {
   renderPage(productData);
 }
 
-function statusProduct(id) {
+function changeStatus(id) {
   productData.forEach((item) => {
     if (id == item.id) {
       item.is_enabled = !item.is_enabled;
@@ -47,30 +53,22 @@ function statusProduct(id) {
   renderPage(productData);
 }
 
-function clearAllTask(e) {
-  console.log(e.target);
-  // e.preventDefault();
-  console.log(e);
+function deleteAllProduct() {
   productData = [];
   renderPage(productData);
 }
 
-clearAllBtn.addEventListener('click', clearAllTask);
+clearAllBtn.addEventListener('click', deleteAllProduct);
 
-function doSomething(e) {
-  console.log(e.target);
-  const action = e.target.dataset.action;
-  const id = e.target.dataset.id;
-  if (action === 'remove') {
-    removeProduct(id)
-  } else if (action === 'status') {
-    statusProduct(id)
-  }else{
-    return alert('別點我')
+function checkAction(e) {
+  if (e.target.dataset.action === 'remove') {
+    removeProduct(e.target.dataset.id)
+  } else if (e.target.dataset.action === 'status') {
+    changeStatus(e.target.dataset.id)
   }
 }
 
-productList.addEventListener('click', doSomething);
+productList.addEventListener('click', checkAction);
 
 function renderPage(data) {
   let str = '';
@@ -97,6 +95,12 @@ function renderPage(data) {
   })
   productList.innerHTML = str;
   countProduct.textContent = data.length;
+}
+
+function resetInput() {
+  title.value = '';
+  productOriginPrice.value = '';
+  productPrice.value = '';
 }
 
 renderPage(productData);
