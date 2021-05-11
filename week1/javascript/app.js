@@ -2,11 +2,16 @@ const productTitle = document.getElementById('title');
 const productOriginPrice = document.getElementById('origin_price');
 const productPrice = document.getElementById('price');
 const addBtn = document.getElementById('addProduct');
-const productList = document.getElementById('productList');
 const clearAllBtn = document.getElementById('clearAll');
-const countProduct = document.getElementById('productCount');
+const productList = document.getElementById('productList');
 
+addBtn.addEventListener('click', validateSubmit);
+clearAllBtn.addEventListener('click', deleteAllProduct);
+productList.addEventListener('click', checkAction);
+
+// init
 let productData = [];
+renderPage(productData);
 
 // 通過驗證後才新增列表
 function validateSubmit() {
@@ -30,8 +35,6 @@ function addProduct() {
   });
   renderPage(productData);
 }
-
-addBtn.addEventListener('click', validateSubmit);
 
 function removeProduct(id) {
   let newIndex = 0;
@@ -58,8 +61,6 @@ function deleteAllProduct() {
   renderPage(productData);
 }
 
-clearAllBtn.addEventListener('click', deleteAllProduct);
-
 function checkAction(e) {
   if (e.target.dataset.action === 'remove') {
     removeProduct(e.target.dataset.id)
@@ -68,9 +69,8 @@ function checkAction(e) {
   }
 }
 
-productList.addEventListener('click', checkAction);
-
 function renderPage(data) {
+  const countProduct = document.getElementById('productCount');
   let str = '';
   data.forEach((item) => {
     str += `
@@ -102,5 +102,3 @@ function resetInput() {
   productOriginPrice.value = '';
   productPrice.value = '';
 }
-
-renderPage(productData);
