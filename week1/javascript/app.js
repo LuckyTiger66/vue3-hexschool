@@ -41,7 +41,8 @@ function addProduct() {
   });
   renderPage(productData);
 }
-
+// 刪除單個商品
+// 利用 id 找出要刪除的商品在陣列的位置，用 splice 刪除單一商品
 function removeProduct(id) {
   let newIndex = 0;
   productData.forEach((item, key) => {
@@ -52,7 +53,7 @@ function removeProduct(id) {
   productData.splice(newIndex, 1);
   renderPage(productData);
 }
-
+// 狀態:是否啟用切換
 function changeStatus(id) {
   productData.forEach((item) => {
     if (id == item.id) {
@@ -61,12 +62,12 @@ function changeStatus(id) {
   })
   renderPage(productData);
 }
-
+// 刪除全部商品，清空 productData 後重新渲染畫面
 function deleteAllProduct() {
   productData = [];
   renderPage(productData);
 }
-
+//  搭配產品列表的監聽事件，來判別使用者是切換啟用還是刪除
 function checkAction(e) {
   if (e.target.dataset.action === 'remove') {
     removeProduct(e.target.dataset.id)
@@ -74,7 +75,8 @@ function checkAction(e) {
     changeStatus(e.target.dataset.id)
   }
 }
-
+//  畫面渲染
+// 產品清單跟目前有幾項產品 
 function renderPage(data) {
   const countProduct = document.getElementById('productCount');
   let str = '';
@@ -99,10 +101,12 @@ function renderPage(data) {
       </td>
     </tr>`;
   })
+  // 清單需用 HTML 標籤， 所以用 innerHTML
   productList.innerHTML = str;
+  // 目前有幾項產品唯一數字， 所以用textContent
   countProduct.textContent = data.length;
 }
-
+//  清空使用者輸入
 function resetInput() {
   title.value = '';
   price.value = '';
