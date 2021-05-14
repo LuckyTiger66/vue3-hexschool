@@ -1,19 +1,23 @@
+// 關注點分離: 資料、方法、渲染
+// 選擇 DOM ，方便後續操作
 const productTitle = document.getElementById('title');
-const productOriginPrice = document.getElementById('origin_price');
+const productOriginPrice = document.getElementById('originPrice');
 const productPrice = document.getElementById('price');
 const addBtn = document.getElementById('addProduct');
 const clearAllBtn = document.getElementById('clearAll');
 const productList = document.getElementById('productList');
 
+// 監聽綁定表單跟按鈕
 addBtn.addEventListener('click', validateSubmit);
 clearAllBtn.addEventListener('click', deleteAllProduct);
 productList.addEventListener('click', checkAction);
 
-// init
+// init 初始化
 let productData = [];
 renderPage(productData);
 
-// 通過驗證後才新增列表
+// 通過驗證後才新增表單
+// 沒通過驗證清空資料，方便使用者再次輸入
 function validateSubmit() {
   if ((productTitle.value).trim() == '') {
     resetInput();
@@ -26,14 +30,14 @@ function validateSubmit() {
     resetInput();
   }
 }
-
+// 新增商品，用時間戳產生不同ID
 function addProduct() {
   productData.push({
     id: Math.floor(Date.now()),
     title: productTitle.value.trim(),
-    origin_price: Number(productOriginPrice.value),
+    originPrice: Number(productOriginPrice.value),
     price: Number(productPrice.value),
-    is_enabled: false,
+    isEnabled: false,
   });
   renderPage(productData);
 }
@@ -52,7 +56,7 @@ function removeProduct(id) {
 function changeStatus(id) {
   productData.forEach((item) => {
     if (id == item.id) {
-      item.is_enabled = !item.is_enabled;
+      item.isEnabled = !item.isEnabled;
     }
   })
   renderPage(productData);
@@ -79,15 +83,15 @@ function renderPage(data) {
     <tr>
       <td>${item.title}</td>
       <td width="120">
-        ${item.origin_price}
+        ${item.originPrice}
       </td>
       <td width="120">
         ${item.price}
       </td>
       <td width="100">
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="${item.id}" ${item.is_enabled? 'checked': ''} data-action="status" data-id="${item.id}">
-          <label class="form-check-label" for="${item.id}">${item.is_enabled? '啟用' : '未啟用'}</label>
+          <input class="form-check-input" type="checkbox" id="${item.id}" ${item.isEnabled? 'checked': ''} data-action="status" data-id="${item.id}">
+          <label class="form-check-label" for="${item.id}">${item.isEnabled? '啟用' : '未啟用'}</label>
         </div>
       </td>
       <td width="120">
@@ -102,5 +106,5 @@ function renderPage(data) {
 function resetInput() {
   title.value = '';
   price.value = '';
-  origin_price.value = '';
+  originPrice.value = '';
 }
