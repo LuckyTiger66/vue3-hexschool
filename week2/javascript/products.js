@@ -24,7 +24,7 @@ const app = {
     if (window.confirm('你確定要刪除嗎？')) {
       this.isLoad(true);
       const { id } = e.target.dataset;
-      const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/product/${id}`;
+      const url = `${this.data.apiUrl}/api/${this.data.apiPath}/admin/product/${id}`;
 
       axios.delete(url).then((res) => {
         if (res.data.success) {
