@@ -4,9 +4,9 @@ const app = {
     apiPath: 'sean666',
     products: [],
   },
-  getData(page = 1) {
+  getData() {
     this.isLoad(true);
-    const url = `${this.data.apiUrl}/${this.data.apiPath}/products?page=${page}`;
+    const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/products/`;
     axios.get(url).then((response) => {
       if (response.data.success) {
         this.isLoad(false);
