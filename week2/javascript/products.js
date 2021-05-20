@@ -6,10 +6,12 @@ const app = {
   },
   getData() {
     this.isLoad(true);
-    const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/products/`;
+    // 取得商品列表 第一頁
+    const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/products/?page=1`;
     axios.get(url).then((res) => {
       if (res.data.success) {
         this.isLoad(false);
+        console.log(res.data);
         this.data.products = res.data.products;
         this.render();
       } else {
