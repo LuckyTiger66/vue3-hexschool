@@ -5,11 +5,11 @@ const app = {
     products: [],
   },
   getData(page = 1) {
-    app.isLoad(true);
+    this.isLoad(true);
     const url = `${this.data.apiUrl}/${this.data.apiPath}/products?page=${page}`;
     axios.get(url).then((response) => {
       if (response.data.success) {
-        app.isLoad(false);
+        this.isLoad(false);
         this.data.products = response.data.products;
         this.render();
       } else {
@@ -20,13 +20,13 @@ const app = {
   },
   deleteData(e) {
     if (window.confirm('你確定要刪除嗎？')) {
-      app.isLoad(true);
+      this.isLoad(true);
       const { id } = e.target.dataset;
       const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/product/${id}`;
 
       axios.delete(url).then((response) => {
         if (response.data.success) {
-          app.isLoad(false);
+          this.isLoad(false);
           alert(response.data.message)
           this.getData();
         }
