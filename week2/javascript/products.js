@@ -13,7 +13,7 @@ const app = {
         this.data.products = response.data.products;
         this.render();
       } else {
-        alert('您尚未登入，請重新登入。');
+        alert(response.data.message);
         window.location = 'index.html';
       }
     })
