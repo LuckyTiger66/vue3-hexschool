@@ -1,17 +1,17 @@
 const app = {
   data: {
-    apiUrl: 'https://vue3-course-api.hexschool.io/api',
+    apiUrl: 'https://vue3-course-api.hexschool.io',
     apiPath: 'sean666',
     products: [],
   },
   getData() {
     this.isLoad(true);
     // 取得商品列表 第一頁
-    const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/products/?page=1`;
+    const url = `${this.data.apiUrl}/api/${this.data.apiPath}/admin/products/?page=1`;
     axios.get(url).then((res) => {
       if (res.data.success) {
         this.isLoad(false);
-        console.log(res.data);
+        // console.log(res.data);
         this.data.products = res.data.products;
         this.render();
       } else {
