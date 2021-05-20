@@ -11,11 +11,13 @@ function login(event) {
     password: password.value,
   }
   axios.post(`${url}admin/signin`, user).then((res) => {
-    if(res.data.success){
+    if (res.data.success) {
       isLoad(false);
-      const token = res.data.token;
-      const expired = new Date(res.data.expired);
-      document.cookie = `hexToken=${token}; expires=${expired}`;
+      // const token = res.data.token;
+      // const expired = new Date(res.data.expired);
+      // document.cookie = `hexToken=${token}; expires=${expired}`;
+      const { token, expired } = res.data;
+      document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
       // console.log(res.data);
       // console.log(token);
       // console.log(expired);

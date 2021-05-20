@@ -7,13 +7,13 @@ const app = {
   getData() {
     this.isLoad(true);
     const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/products/`;
-    axios.get(url).then((response) => {
-      if (response.data.success) {
+    axios.get(url).then((res) => {
+      if (res.data.success) {
         this.isLoad(false);
-        this.data.products = response.data.products;
+        this.data.products = res.data.products;
         this.render();
       } else {
-        alert(response.data.message);
+        alert(res.data.message);
         window.location = 'index.html';
       }
     })
@@ -24,10 +24,10 @@ const app = {
       const { id } = e.target.dataset;
       const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/product/${id}`;
 
-      axios.delete(url).then((response) => {
-        if (response.data.success) {
+      axios.delete(url).then((res) => {
+        if (res.data.success) {
           this.isLoad(false);
-          alert(response.data.message)
+          alert(res.data.message)
           this.getData();
         }
       });
