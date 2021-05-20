@@ -18,7 +18,6 @@ const app = {
   },
   deleteData(e) {
     if (window.confirm('你確定要刪除嗎？')) {
-      window.alert('示範程式碼不運作');
       const { id } = e.target.dataset;
       const url = `${this.data.apiUrl}/${this.data.apiPath}/admin/product/${id}`;
 
