@@ -1,7 +1,7 @@
 const app = {
   data: {
     apiUrl: 'https://vue3-course-api.hexschool.io',
-    apiPath: 'sean666',
+    apiPath: 'test666',
     products: [],
   },
   getData() {
