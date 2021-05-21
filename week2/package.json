@@ -1,7 +1,6 @@
 {
   "name": "week2",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +10,30 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^7.26.0",
+    "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.2",
     "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.3.0"
-  }
+  },
+  "dependencies": {
+    "cli-cursor": "^3.1.0",
+    "find-up": "^2.1.0",
+    "iconv-lite": "^0.4.24",
+    "locate-path": "^2.0.0",
+    "parse-json": "^2.2.0",
+    "path-exists": "^3.0.0",
+    "path-parse": "^1.0.6",
+    "pify": "^2.3.0",
+    "path-type": "^2.0.0",
+    "pkg-dir": "^2.0.0",
+    "restore-cursor": "^3.1.0",
+    "rimraf": "^2.6.3",
+    "run-async": "^2.4.1",
+    "safer-buffer": "^2.1.2",
+    "slice-ansi": "^2.1.0",
+    "signal-exit": "^3.0.3",
+    "spdx-exceptions": "^2.3.0"
+  },
+  "description": ""
 }
