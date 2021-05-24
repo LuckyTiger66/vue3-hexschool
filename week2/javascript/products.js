@@ -2,8 +2,8 @@
 /* eslint-disable no-alert */
 const app = {
   data: {
-    apiUrl: "https://vue3-course-api.hexschool.io",
-    apiPath: "test666",
+    apiUrl: 'https://vue3-course-api.hexschool.io',
+    apiPath: 'test666',
     products: [],
   },
   getData() {
@@ -18,12 +18,12 @@ const app = {
         this.render();
       } else {
         alert(res.data.message);
-        window.location = "index.html";
+        window.location = 'index.html';
       }
     });
   },
   deleteData(e) {
-    if (window.confirm("你確定要刪除嗎？")) {
+    if (window.confirm('你確定要刪除嗎？')) {
       this.isLoad(true);
       const { id } = e.target.dataset;
       const url = `${this.data.apiUrl}/api/${this.data.apiPath}/admin/product/${id}`;
@@ -38,10 +38,10 @@ const app = {
     }
   },
   render() {
-    const el = document.querySelector("#productList");
-    const productCount = document.querySelector("#productCount");
+    const el = document.querySelector('#productList');
+    const productCount = document.querySelector('#productCount');
 
-    let str = "";
+    let str = '';
     this.data.products.forEach((item) => {
       str += `
         <tr>
@@ -53,38 +53,33 @@ const app = {
             ${item.price}
           </td>
           <td width="100">
-            <span class="${
-              item.is_enabled ? "text-success" : "text-secondary"
-            }">${item.is_enabled ? "啟用" : "未啟用"}</span>
+            <span class="${item.is_enabled ? 'text-success' : 'text-secondary'}">${
+  item.is_enabled ? '啟用' : '未啟用'
+}</span>
           </td>
           <td width="120">
             <button type="button" class="btn btn-sm btn-outline-danger move deleteBtn" data-action="remove" data-id="${
-              item.id
-            }"> 刪除 </button>
+  item.id
+}"> 刪除 </button>
           </td>
         </tr>`;
     });
     el.innerHTML = str;
     productCount.textContent = this.data.products.length;
 
-    const deleteBtn = document.querySelectorAll(".deleteBtn");
+    const deleteBtn = document.querySelectorAll('.deleteBtn');
     deleteBtn.forEach((item) => {
-      item.addEventListener("click", this.deleteData.bind(this));
+      item.addEventListener('click', this.deleteData.bind(this));
     });
   },
   isLoad(boolean) {
-    const loadEl = document.querySelector(".load");
+    const loadEl = document.querySelector('.load');
     // eslint-disable-next-line no-unused-expressions
-    boolean
-      ? loadEl.classList.add("loading")
-      : loadEl.classList.remove("loading");
+    boolean ? loadEl.classList.add('loading') : loadEl.classList.remove('loading');
   },
   created() {
     // 取出 Token
-    const token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/,
-      "$1"
-    );
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
     axios.defaults.headers.common.Authorization = token;
 
     this.getData();
