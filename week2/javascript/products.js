@@ -10,17 +10,22 @@ const app = {
     this.isLoad(true);
     // 取得商品列表 第一頁
     const url = `${this.data.apiUrl}/api/${this.data.apiPath}/admin/products/?page=1`;
-    axios.get(url).then((res) => {
-      if (res.data.success) {
-        this.isLoad(false);
-        // console.log(res.data);
-        this.data.products = res.data.products;
-        this.render();
-      } else {
-        alert(res.data.message);
-        window.location = 'index.html';
-      }
-    });
+    axios
+      .get(url)
+      .then((res) => {
+        if (res.data.success) {
+          this.isLoad(false);
+          // console.log(res.data);
+          this.data.products = res.data.products;
+          this.render();
+        } else {
+          alert(res.data.message);
+          window.location = 'index.html';
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   deleteData(e) {
     if (window.confirm('你確定要刪除嗎？')) {
@@ -28,13 +33,18 @@ const app = {
       const { id } = e.target.dataset;
       const url = `${this.data.apiUrl}/api/${this.data.apiPath}/admin/product/${id}`;
 
-      axios.delete(url).then((res) => {
-        if (res.data.success) {
-          this.isLoad(false);
-          alert(res.data.message);
-          this.getData();
-        }
-      });
+      axios
+        .delete(url)
+        .then((res) => {
+          if (res.data.success) {
+            this.isLoad(false);
+            alert(res.data.message);
+            this.getData();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   },
   render() {
