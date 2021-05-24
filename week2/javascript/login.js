@@ -1,8 +1,8 @@
 /* eslint-disable no-use-before-define */
-const username = document.querySelector("#username");
-const password = document.querySelector("#password");
-const form = document.querySelector("#form");
-const url = "https://vue3-course-api.hexschool.io/";
+const username = document.querySelector('#username');
+const password = document.querySelector('#password');
+const form = document.querySelector('#form');
+const url = 'https://vue3-course-api.hexschool.io/';
 
 function login(event) {
   event.preventDefault();
@@ -25,7 +25,7 @@ function login(event) {
         // console.log(res.data);
         // console.log(token);
         // console.log(expired);
-        window.location = "./products.html";
+        window.location = './products.html';
       } else {
         isLoad(false);
         // eslint-disable-next-line no-alert
@@ -38,11 +38,9 @@ function login(event) {
 }
 
 function isLoad(boolean) {
-  const loadEl = document.querySelector(".load");
+  const loadEl = document.querySelector('.load');
   // eslint-disable-next-line no-unused-expressions
-  boolean
-    ? loadEl.classList.add("loading")
-    : loadEl.classList.remove("loading");
+  boolean ? loadEl.classList.add('loading') : loadEl.classList.remove('loading');
 }
 
-form.addEventListener("submit", login);
+form.addEventListener('submit', login);
