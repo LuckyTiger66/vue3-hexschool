@@ -46,7 +46,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item) in products" :key="item.id">
+            <tr v-for="item in products" :key="item.id">
               <td>{{ item.category }}</td>
               <td>
                 <img :src="item.imageUrl" :alt="item.title"  class="img-thumbnail">
@@ -75,6 +75,7 @@
             </tr>
           </tbody>
         </table>
+        <p class="text-warning text-center" v-if="products.length === 0">目前尚未有商品</p>
       </div>
       <!-- Modal -->
       <div id="productModal" ref="productModal" class="modal fade" tabindex="-1" aria-labelledby="productModalLabel"

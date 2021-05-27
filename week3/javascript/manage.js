@@ -26,11 +26,6 @@ createApp({
 
     // 取出 Token
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
-    if (token === '') {
-      alert('您尚未登入請重新登入。');
-      window.location = 'index.html';
-    }
-
     axios.defaults.headers.common.Authorization = token;
 
     this.getData();
@@ -42,7 +37,8 @@ createApp({
         if (response.data.success) {
           this.products = response.data.products;
         } else {
-          alert(response.data.message);
+            alert('您尚未登入請重新登入。');
+            window.location = 'index.html';
         }
       })
     },
