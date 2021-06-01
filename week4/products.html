@@ -94,21 +94,21 @@
             </a>
           </li>
           <li
-            v-for="(item, index) in pages.total_pages"
+            v-for="(page, index) in pages.total_pages"
             :key="index"
             class="page-item"
-            :class="{'active': item === pages.current_page}"
+            :class="{'active': page === pages.current_page}"
           >
             <span
               class="page-link"
-              v-if="item === pages.current_page"
-            >{{ item }}</span>
+              v-if="page === pages.current_page"
+            >{{ page }}</span>
             <a
               class="page-link"
               href="#"
               v-else
-              @click.prevent="getCurrentPage(item)"
-            >{{ item }}</a>
+              @click.prevent="getCurrentPage(page)"
+            >{{ page }}</a>
           </li>
           <li
             class="page-item"
