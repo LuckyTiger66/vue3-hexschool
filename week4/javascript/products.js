@@ -65,66 +65,8 @@ createApp({
 })
   // 分頁元件
   .component('pagination', {
-    // template: 
-    //   `<nav aria-label="Page navigation example">
-    //     <ul class="pagination">
-    //       <li
-    //         class="page-item"
-    //         :class="{'disabled': pages.current_page === 1}"
-    //       >
-    //         <a
-    //           class="page-link"
-    //           href="#"
-    //           aria-label="Previous"
-    //           @click.prevent="getCurrentPage(pages.current_page - 1)"
-    //         >
-    //           <span aria-hidden="true">&laquo;</span>
-    //         </a>
-    //       </li>
-    //       <li
-    //         v-for="(number, index) in pages.total_pages"
-    //         :key="index"
-    //         class="page-item"
-    //         :class="{'active': number === pages.current_page}"
-    //       >
-    //         <span
-    //           class="page-link"
-    //           v-if="number === pages.current_page"
-    //         >{{ number }}</span>
-    //         <a
-    //           class="page-link"
-    //           href="#"
-    //           v-else
-    //           @click.prevent="getCurrentPage(number)"
-    //         >{{ number }}</a>
-    //       </li>
-    //       <li
-    //         class="page-item"
-    //         :class="{'disabled': pages.current_page === pages.total_pages}"
-    //       >
-    //         <a
-    //           class="page-link"
-    //           href="#"
-    //           aria-label="Next"
-    //           @click.prevent="getCurrentPage(pages.current_page + 1)"
-    //         >
-    //           <span aria-hidden="true">&raquo;</span>
-    //         </a>
-    //       </li>
-    //     </ul>
-    //   </nav>
-    // `,
     template: '#pagination',
     props:['pages'],
-    // props: {
-    //   pages:{
-    //     type: Object,
-    //     default() {
-    //       return { 
-    //       }
-    //     }
-    //   }
-    // },
     methods: {
       getCurrentPage(number) {
         // $emit() 第一個參數是自訂義事件名稱 第二個參數是來自 getCurrentPage() 中的 number
