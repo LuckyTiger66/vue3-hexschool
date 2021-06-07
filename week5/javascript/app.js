@@ -16,7 +16,7 @@ configure({
 });
 
 const apiUrl = 'https://vue3-course-api.hexschool.io';
-const apiPath = 'sean666';
+const apiPath = 'test666';
 
 Vue.createApp({
   data() {
