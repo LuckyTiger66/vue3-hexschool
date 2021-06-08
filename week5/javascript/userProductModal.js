@@ -18,8 +18,8 @@ export default {
   },
   mounted() {
     this.modal = new bootstrap.Modal(this.$refs.modal, {
-      keyboard: false,
-      backdrop: 'static'
+      keyboard: false,     // 按 esc 鍵盤不關閉
+      backdrop: 'static'  // 按背景不關閉.
     });
   },
   methods: {

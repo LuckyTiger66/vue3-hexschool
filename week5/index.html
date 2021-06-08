@@ -46,6 +46,7 @@
                   <div class="btn-group btn-group-sm">
                     <button type="button" class="btn btn-outline-secondary" @click="getProduct(item.id)"
                       :disabled="loadingStatus.loadingItem === item.id || !item.is_enabled">
+                      <!-- https://fontawesome.com/v5.15/how-to-use/on-the-web/styling/animating-icons -->
                       <i class="fas fa-spinner fa-pulse" v-if="loadingStatus.loadingItem === item.id"></i>
                       查看更多
                     </button>
@@ -61,7 +62,8 @@
           </table>
           <!-- 購物車列表 -->
           <div class="text-end">
-            <button class="btn btn-outline-danger" type="button" @click="deleteAllCarts">清空購物車</button>
+            <!-- 優惠購物車為空時 disabled -->
+            <button class="btn btn-outline-danger" type="button" @click="deleteAllCarts"  :disabled= "cartAmont === 0">清空購物車</button>
           </div>
           <table class="table align-middle">
             <thead>
@@ -152,7 +154,8 @@
               <textarea name="" id="message" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
             </div>
             <div class="text-end">
-              <button type="submit" class="btn btn-danger">送出訂單</button>
+              <!-- 優惠購物車為空時 disabled -->
+              <button type="submit" class="btn btn-danger" :disabled= "cartAmont === 0">送出訂單</button>
             </div>
           </v-form>
         </div>

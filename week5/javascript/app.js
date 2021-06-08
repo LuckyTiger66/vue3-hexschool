@@ -36,6 +36,7 @@ Vue.createApp({
         message: '',
       },
       cart: {},
+      cartAmont: '',
     };
   },
   components: {
@@ -48,7 +49,7 @@ Vue.createApp({
       const url = `${apiUrl}/api/${apiPath}/products`;
       axios.get(url).then((response) => {
         if (response.data.success) {
-          console.log(response.data.products);
+          // console.log(response.data.products);
           this.products = response.data.products;
         } else {
           alert(response.data.message);
@@ -89,9 +90,9 @@ Vue.createApp({
     },
     updateCart(data) {
       this.loadingStatus.loadingItem = data.id;
-      const url = `${apiUrl}/api/${apiPath}/cart/${data.id}`;
+      const url = `${apiUrl}/api/${apiPath}/cart/${data.id}`; // 購物車 id
       const cart = {
-        product_id: data.product_id,
+        product_id: data.product_id, // 產品 id
         qty: data.qty,
       };
       axios.put(url, { data: cart }).then((response) => {
@@ -121,6 +122,8 @@ Vue.createApp({
       axios.get(url).then((response) => {
         if (response.data.success) {
           this.cart = response.data.data;
+          this.cartAmont = this.cart.carts.length;
+          // console.log(this.cart.carts.length);
         } else {
           alert(response.data.message);
         }
