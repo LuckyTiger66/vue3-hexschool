@@ -29,7 +29,7 @@ export default {
       if(token) {
         // Axios 預設值
         this.$http.defaults.headers.common.Authorization = `${token}`;
-
+        // 安全性檢查用戶是否仍持續登入
         const api = `${process.env.VUE_APP_API}api/user/check`;
         this.$http.post(api, { 'api_token': this.token }).then((response) => {
           if (response.data.success) {
