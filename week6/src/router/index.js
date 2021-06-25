@@ -1,11 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
+// 前後台分離
 const routes = [
   {
     path: '/',
     component: () => import('../views/Home.vue'),
     children: [
       {
+        // 跟上層路由合併
         path: '',
         component: () => import('../views/Index.vue'),
       },
@@ -26,11 +28,12 @@ const routes = [
       },
     ],
   },
-  // 巢狀路由
+  // 登入
   {
     path: '/login',
     component: () => import('../views/Login.vue'),
   },
+  // 巢狀路由
   {
     path: '/admin',
     component: () => import('../views/Dashboard.vue'),

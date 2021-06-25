@@ -12,7 +12,7 @@
 </template>
 
 <script>
-// 驗證可以寫這邊
+// 後台驗證登入登出管理
 export default {
   name: 'Dashboard',
   data(){
