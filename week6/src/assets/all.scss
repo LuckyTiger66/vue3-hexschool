@@ -1,0 +1,13 @@
+@import "~bootstrap/scss/functions";
+@import "./helpers/_variables";
+@import "~bootstrap/scss/bootstrap"; // ~sass 中對應 node modules
+
+
+// Casper 習慣範例
+// all.scss
+// helpers/  //複製一份 bootsraps _varibles.scss 
+// -OOCSS -> (bootsraps)
+// -BEM  -> 便於開發
+// 使用註解的方式更改 如: "primary":    #ffe180 //$primary,
+// components/ //整理元件
+
